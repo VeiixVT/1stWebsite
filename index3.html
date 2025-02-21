@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love 2 Dance</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const stats = document.querySelectorAll(".stat-number");
+            const options = {
+                root: null,
+                rootMargin: "0px",
+                threshold: 0.5
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const target = entry.target;
+                        const targetValue = parseInt(target.getAttribute("data-value"));
+                        let count = 0;
+                        const increment = targetValue / 100;
+                        const interval = setInterval(() => {
+                            count += increment;
+                            if (targetValue === 119) {
+                                target.innerText = "∞";
+                                clearInterval(interval);
+                            } else if (targetValue === 5678) {
+                                target.innerText = Math.floor(count);
+                                if (count >= targetValue) {
+                                    target.innerText = targetValue;
+                                    clearInterval(interval);
+                                }
+                            } else {
+                                target.innerText = Math.floor(count) + "%";
+                                if (count >= targetValue) {
+                                    target.innerText = targetValue + "%";
+                                    clearInterval(interval);
+                                }
+                            }
+                        }, 20);
+                        observer.unobserve(target);
+                    }
+                });
+            }, options);
+
+            stats.forEach(stat => observer.observe(stat));
+        });
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll("#kontakt input, #kontakt textarea").forEach(field => {
+                field.value = "";
+            });
+        });
+    </script>
+
+    <style>
+        label.required:after {
+            content: "*";
+            color: rgb(153, 1, 1);
+        }
+    </style>
+
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
+</head>
+
+<body class="bg-gray-100">
+
+    <header class="bg-white shadow-md fixed top-0 left-0 w-full z-50">
+
+        <nav class="container mx-auto flex items-center justify-between lg:justify-between p-6">
+            <a href="#" class="flex items-center">
+                <span class="sr-only">Love2Dance</span>
+                <img class="h-16 w-auto" src="./assets/img/Love2Dance Logo 2-V2.svg" alt="Love 2 Dance Logo">
+            </a>
+            <div class="hidden lg:flex gap-8">
+                <a href="#über-uns" class="text-gray-800 hover:text-gray-900 hover:underline font-semi text-2xl">Über
+                    uns</a>
+                <a href="#tänze-auftritte"
+                    class="text-gray-800 hover:text-gray-900 hover:underline font-semi text-2xl">Tänze/Auftritte</a>
+                <a href="#kontakt"
+                    class="text-gray-800 hover:text-gray-900 hover:underline font-semi text-2xl">Kontakt</a>
+            </div>
+            <a href="#kontakt" class="hidden lg:block bg-[#143cc8] text-white font-medium px-5 py-3 rounded-lg">
+                Jetzt Anfragen →
+            </a>
+            <div class="flex lg:hidden">
+                <button type="button"
+                    class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+                    data-collapse-toggle="mobile-menu">
+                    <span class="sr-only">Menü öffnen</span>
+                    <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                        aria-hidden="true" data-slot="icon">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Mobile menu, show/hide based on menu open state. -->
+            <div class="hidden" role="dialog" aria-modal="true" id="mobile-menu">
+                <!-- Background backdrop, show/hide based on slide-over state. -->
+                <div class="fixed inset-0 z-10"></div>
+                <div
+                    class="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto mx-auto px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+                    <div class="mt-6 flow-root rounded-lg bg-gray-100 border border-gray-300 p-4 mt-4">
+                        <div class="-my-6 divide-y divide-gray-500/10">
+                            <div class="space-y-2 py-6">
+                                <a href="#"
+                                    class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Home</a>
+                                <a href="#"
+                                    class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Über
+                                    Uns</a>
+                                <a href="#"
+                                    class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Company</a>
+                            </div>
+                            <div class="py-6">
+                                <a href="#kontakt"
+                                    class="lg:block bg-[#143cc8] text-white font-medium px-5 py-3 rounded-lg">
+                                    Jetzt Anfragen →
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="mt-10 text-black pb-24 pt-40 text-left shadow-xl rounded-lg relative">
+        <div class="max-w-screen-xl mx-auto relative">
+            <img class="w-full max-w-6xl mx-auto rounded-lg shadow-lg object-cover"
+                src="./assets/img/IMG-20240310-WA0025.jpg"
+                alt="Formationstanzgruppe im Stil der Lateinformation Blues Brothers">
+            <div class="absolute top-56 left-8 bg-white shadow-md p-6 rounded-lg text-gray-900">
+                <h1 class="text-5xl font-bold tracking-tight leading-tight">Eleganz.</h1>
+                <h1 class="text-5xl font-bold tracking-tight leading-tight">Emotionen.</h1>
+                <h1 class="text-5xl font-bold tracking-tight leading-tight">Leidenschaft.</h1>
+                <h1 class="text-5xl font-bold tracking-tight leading-tight">Love 2 Dance!</h1>
+            </div>
+        </div>
+    </section>
+
+    <div id="über-uns"
+        class="relative isolate overflow-hidden bg-white px-6 py-24 sm:py-32 lg:overflow-visible lg:px-0">
+        <div
+            class="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:mx-0 lg:max-w-none lg:grid-cols-2 lg:items-start lg:gap-y-10">
+            <div
+                class="lg:col-span-2 lg:col-start-1 lg:row-start-1 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
+                <div class="lg:pr-4">
+                    <div class="lg:max-w-lg">
+                        <h2 class="mt-2 text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">Über uns</h2>
+                        <p class="mt-6 text-xl text-gray-700">Wir sind Love 2 Dance eine leidenschaftliche
+                            Formationstanzgruppe, die mit
+                            Eleganz und Ausdruckskraft einzigartige Bühnenerlebnisse schafft. Ob klassischer Wiener
+                            Walzer oder mitreißende Lateinformationen – unsere Tänzerinnen und Tänzer begeistern mit
+                            Hingabe und Professionalität.</p>
+                    </div>
+                </div>
+            </div>
+            <div
+                class="-mt-12 -ml-12 p-12 lg:sticky lg:top-4 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:overflow-hidden">
+                <img class="md:w-[34rem] w-[15rem] aspect-square object-cover md:aspect-auto max-w-none rounded-xl bg-gray-900 ring-1 shadow-xl ring-gray-400/10 lg:w-[48rem]"
+                    src="./assets/img/IMG-20241110-WA0096.jpg"
+                    alt="Formationstanzgruppe im Stil der Lateinformation Memories">
+            </div>
+            <div
+                class="lg:col-span-2 lg:col-start-1 lg:row-start-2 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
+                <div class="lg:pr-4">
+                    <div class="max-w-xl text-base text-gray-700 lg:max-w-lg">
+                        <p>Unsere Tanzformationen sind geprägt von Präzision, Kreativität und einer tiefen Leidenschaft
+                            für Bewegung. Formationstanz ist für uns mehr als Bewegung – es ist ein gemeinsames Erleben.
+                            Mit jeder Performance möchten wir unser Publikum begeistern und die Faszination
+                            weitertragen.</p>
+                        <p class="mt-8">Ob auf Wettbewerben, Bühnenauftritten oder privaten Veranstaltungen – unsere
+                            Choreografien erzählen Geschichten, die das Publikum in ihren Bann ziehen. Lassen Sie sich
+                            von unserer tänzerischen Vielfalt inspirieren!</p>
+                        <h3 class="mt-16 text-2xl font-bold tracking-tight text-gray-900">Unsere Erwähnung bei der
+                            Presse</h3>
+                        <p class="mt-6">In einem aktuellen Artikel der
+                            <a href="https://www.otz.de/lokales/gera/article407819492/die-nachrichten-zum-donnerstag-aus-gera-und-umgebung.html"
+                                class="font-semibold text-[#143cc8] underline" target="_blank"
+                                rel="noopener noreferrer">Ostthüringer Zeitung&nbsp;</a>wurde über
+                            unsere Formationstanzgruppe „Love
+                            2 Dance“ und unsere enge Zusammenarbeit mit der Tanzschule Monique Lätzsch berichtet. Der
+                            Artikel hebt hervor, wie wir mit unseren kreativen Choreografien Bewegung und Freude
+                            vermitteln. Unsere Partnerschaft mit der Tanzschule Monique Lätzsch inspiriert uns dabei
+                            stets zu neuen tänzerischen Höhenflügen.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-white py-16 sm:py-24 -mt-8">
+        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+            <dl class="grid grid-cols-1 gap-x-8 gap-y-16 text-center lg:grid-cols-3">
+                <div class="mx-auto flex max-w-xs flex-col gap-y-4">
+                    <dt class="text-base/7 text-gray-600">Eleganz</dt>
+                    <dd class="stat-number order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl"
+                        data-value="100">0%</dd>
+                </div>
+                <div class="mx-auto flex max-w-xs flex-col gap-y-4">
+                    <dt class="text-base/7 text-gray-600">Emotionen</dt>
+                    <dd class="stat-number order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl"
+                        data-value="5678">0%</dd>
+                </div>
+                <div class="mx-auto flex max-w-xs flex-col gap-y-4">
+                    <dt class="text-base/7 text-gray-600">Leidenschaft</dt>
+                    <dd class="stat-number order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl"
+                        data-value="119">0%</dd>
+                </div>
+            </dl>
+        </div>
+    </div>
+
+    <section id="tänze-auftritte" class="container mx-auto py-16 px-4">
+        <h2 class="text-5xl font-semibold text-gray-900 text-center mb-12">Tänze & Auftritte</h2>
+        <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            <a href="#cinderella" class="block bg-white rounded-lg shadow-lg overflow-hidden"
+                data-modal-target="cinderella" data-modal-toggle="cinderella">
+                <img src="./assets/img/IMG-20241110-WA0132.jpg"
+                    alt="Formationstanzgruppe im Stil des Wiener Walzer Cinderella" class="w-full h-64 object-cover">
+                <div class="p-6">
+                    <h3 class="text-gray-700 font-semibold">"Cinderella"</h3>
+                    <p class="text-gray-500">Wiener Walzer</p>
+                </div>
+            </a>
+            <a href="#blues brothers" class="block bg-white rounded-lg shadow-lg overflow-hidden"
+                data-modal-target="blues brothers" data-modal-toggle="blues brothers">
+                <img src="./assets/img/IMG-20231112-WA0010.jpg"
+                    alt="Formationstanzgruppe im Stil der Lateinformation Blues Brothers"
+                    class="w-full h-64 object-cover">
+                <div class="p-6">
+                    <h3 class="text-gray-700 font-semibold">"Blues Brothers"</h3>
+                    <p class="text-gray-500">Lateinformation</p>
+                </div>
+            </a>
+            <a href="#memories" class="block bg-white rounded-lg shadow-lg overflow-hidden" data-modal-target="memories"
+                data-modal-toggle="memories">
+                <img src="./assets/img/IMG-20241110-WA0092.jpg"
+                    alt="Formationstanzgruppe im Stil der Lateinformation Memories" class="w-full h-64 object-cover">
+                <div class="p-6">
+                    <h3 class="text-gray-700 font-semibold">"Memories"</h3>
+                    <p class="text-gray-500">Lateinformation</p>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <div id="kontakt" class="isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
+        <div class="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]"
+            aria-hidden="true">
+            <div class="relative left-1/2 -z-10 aspect-1155/678 w-[36.125rem] max-w-none -translate-x-1/2 rotate-[30deg] bg-linear-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-40rem)] sm:w-[72.1875rem]"
+                style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)">
+            </div>
+        </div>
+        <div class="mx-auto max-w-2xl text-center">
+            <h2 class="text-4xl font-semibold tracking-tight text-balance text-gray-900 sm:text-5xl">Kontakt</h2>
+            <p class="mt-2 text-lg/8 text-gray-600">Lassen Sie sich von uns und unserem Können begeistern – ob bei einer
+                Hochzeit, einem Gala-Event oder einer Firmenfeier!</p>
+            <p class="text-lg/8 text-gray-600">Kontaktieren Sie uns, wir freuen uns und warten schon!</p>
+        </div>
+        <form action="#" method="POST" class="mx-auto mt-16 max-w-xl sm:mt-20">
+            <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
+                <div>
+                    <label for="first-name" class="block text-sm/6 font-semibold text-gray-900 required">Vorname</label>
+                    <div class="mt-2.5">
+                        <input type="text" name="first-name" id="first-name" required
+                            class="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 border border-gray-300">
+                    </div>
+                </div>
+                <div>
+                    <label for="last-name" class="block text-sm/6 font-semibold text-gray-900 required">Nachname</label>
+                    <div class="mt-2.5">
+                        <input type="text" name="last-name" id="last-name" required
+                            class="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 border border-gray-300">
+                    </div>
+                </div>
+                <div class="sm:col-span-2">
+                    <label for="company" class="block text-sm/6 font-semibold text-gray-900">Unternehmen</label>
+                    <div class="mt-2.5">
+                        <input type="text" name="company" id="company" autocomplete="organization"
+                            class="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 border border-gray-300 placeholder:text-gray-400 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                    </div>
+                </div>
+                <div class="sm:col-span-2">
+                    <label for="email" class="block text-sm/6 font-semibold text-gray-900 required">Email</label>
+                    <div class="mt-2.5">
+                        <input type="email" name="email" id="email" required
+                            class="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 border border-gray-300">
+                    </div>
+                </div>
+                <div class="sm:col-span-2">
+                    <label for="message" class="block text-sm/6 font-semibold text-gray-900 required">Nachricht</label>
+                    <div class="mt-2.5">
+                        <textarea name="message" id="message" rows="4" required
+                            class="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 border border-gray-300"></textarea>
+                    </div>
+                </div>
+                <div class="flex gap-x-4 sm:col-span-2">
+                    <div class="flex h-6 items-center">
+                        <button type="button"
+                            class="flex w-8 flex-none cursor-pointer rounded-full bg-gray-200 p-px ring-1 ring-gray-900/5 transition-colors duration-200 ease-in-out ring-inset focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#143cc8]"
+                            role="switch" aria-checked="false" aria-labelledby="switch-1-label">
+                            <span class="sr-only">Agree to policies</span>
+                            <span aria-hidden="true"
+                                class="size-4 translate-x-0 transform rounded-full bg-white ring-1 shadow-xs ring-gray-900/5 transition duration-200 ease-in-out"></span>
+                        </button>
+                    </div>
+                    <label class="text-sm/6 text-gray-600" id="switch-1-label">
+                        Mit dieser Auswahl stimmen Sie unserer
+                        <a href="file:///Z:/Praktikant_KA/Pierre%20N%C3%BCrnberger/LoveToDance/Website-Code/indexDatenschutz.html"
+                            class="font-semibold text-[#143cc8]">Datenschutzerklärung&nbsp;</a>zu.
+                    </label>
+                </div>
+            </div>
+            <div class="mt-10">
+                <button type="submit"
+                    class="block w-full rounded-md bg-gray-300 text-gray-500 px-3.5 py-2.5 text-center text-sm font-semibold shadow-xs"
+                    disabled> Absenden </button>
+            </div>
+        </form>
+    </div>
+
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto flex flex-col md:flex-row items-center justify-between px-6">
+            <div class="text-center md:text-left">
+                <p class="text-gray-400 text-sm">&copy; <span id="year"></span> Love 2 Dance. Alle Rechte vorbehalten.
+                </p>
+            </div>
+            <div class="flex space-x-6 mt-4 md:mt-0">
+                <a href="file:///Z:/Praktikant_KA/Pierre%20N%C3%BCrnberger/LoveToDance/Website-Code/indexImpressum.html"
+                    class="text-gray-400 hover:text-white transition">Impressum</a>
+                <a href="file:///Z:/Praktikant_KA/Pierre%20N%C3%BCrnberger/LoveToDance/Website-Code/indexDatenschutz.html"
+                    class="text-gray-400 hover:text-white transition">Datenschutzerklärung</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Main modal -->
+    <div id="cinderella" tabindex="-1" aria-hidden="true"
+        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        <div class="relative p-4 w-full max-w-6xl max-h-full">
+            <!-- Modal content -->
+            <div class="relative bg-white rounded-lg shadow-md">
+                <!-- Modal header -->
+                <div
+                    class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600 border-gray-200">
+                    <h3 class="text-xl font-semibold text-gray-900">
+                        Wiener Walzer "Cinderella"
+                    </h3>
+                    <button type="button"
+                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
+                        data-modal-hide="cinderella">
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                        </svg>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                </div>
+                <!-- Modal body -->
+                <div class="p-4 md:p-5 space-y-4">
+                    <p class="text-base leading-relaxed text-gray-500">
+                        Der Wiener Walzer "Cinderella" ist ein eleganter und romantischer Tanz, der die Magie und Anmut
+                        des bekannten Märchens musikalisch widerspiegelt. Mit seinen fließenden, schwungvollen
+                        Bewegungen und der charakteristischen 3/4-Takt-Rhythmik verkörpert er die Leichtigkeit und den
+                        Zauber eines königlichen Balles. Die Musik, oft inspiriert von klassischen Walzerkompositionen,
+                        lädt zum Träumen ein und entführt die Tänzer in eine märchenhafte Welt, in der sich alles um
+                        Eleganz, Anmut und die große Liebe dreht.
+                    </p>
+                    <section class="container mx-auto py-16 px-4">
+                        <div class="grid gap-12 md:grid-cols-2 lg:grid-cols-2">
+                            <div class="block bg-white rounded-lg shadow-lg overflow-hidden">
+                                <img src="./assets/img/IMG-20231112-WA0042.jpg"
+                                    alt="Formationstanzgruppe im Stil des Wiener Walzer Cinderella"
+                                    class="w-full h-64 object-cover">
+                            </div>
+                            <div class="block bg-white rounded-lg shadow-lg overflow-hidden">
+                                <img src="./assets/img/IMG-20231112-WA0044.jpg"
+                                    alt="Formationstanzgruppe im Stil des Wiener Walzer Cinderella"
+                                    class="w-full h-64 object-cover">
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main modal -->
+    <div id="blues brothers" tabindex="-1" aria-hidden="true"
+        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        <div class="relative p-4 w-full max-w-6xl max-h-full">
+            <!-- Modal content -->
+            <div class="relative bg-white rounded-lg shadow-md">
+                <!-- Modal header -->
+                <div
+                    class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600 border-gray-200">
+                    <h3 class="text-xl font-semibold text-gray-900">
+                        Lateinformation "Blues Brothers"
+                    </h3>
+                    <button type="button"
+                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
+                        data-modal-hide="blues brothers">
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                        </svg>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                </div>
+                <!-- Modal body -->
+                <div class="p-4 md:p-5 space-y-4">
+                    <p class="text-base leading-relaxed text-gray-500">
+                        Die Lateinformation „Blues Brothers“ bringt die energiegeladene Musik und den unverwechselbaren
+                        Stil der Kultfiguren auf die Tanzfläche. Mit mitreißenden Choreografien, schnellen Wechseln und
+                        ausdrucksstarken Bewegungen kombiniert die Formation Elemente aus Jazz, Swing und Showdance. Die
+                        Mischung aus Dynamik, Präzision und Entertainment macht die Performance zu einem spektakulären
+                        Highlight voller Rhythmus und Energie.
+                    </p>
+                    <section class="container mx-auto py-16 px-4">
+                        <div class="flex justify-center">
+                            <div class="block bg-white rounded-lg shadow-lg overflow-hidden w-full max-w-lg">
+                                <img src="./assets/img/IMG-20231112-WA0003.jpg"
+                                    alt="Formationstanzgruppe im Stil der Lateinformation Blues Brothers"
+                                    class="w-full h-64 object-cover aspect-[16/9]">
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main modal -->
+    <div id="memories" tabindex="-1" aria-hidden="true"
+        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        <div class="relative p-4 w-full max-w-6xl max-h-full">
+            <!-- Modal content -->
+            <div class="relative bg-white rounded-lg shadow-md">
+                <!-- Modal header -->
+                <div
+                    class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600 border-gray-200">
+                    <h3 class="text-xl font-semibold text-gray-900">
+                        Lateinformation "Memories"
+                    </h3>
+                    <button type="button"
+                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
+                        data-modal-hide="memories">
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                        </svg>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                </div>
+                <!-- Modal body -->
+                <div class="p-4 md:p-5 space-y-4">
+                    <p class="text-base leading-relaxed text-gray-500">
+                        Die Lateinformation „Memories“ verbindet emotionale Ausdruckskraft mit präziser Tanztechnik. Mit
+                        fließenden Bewegungen, eleganten Formationen und gefühlvoller Musik erzählt die Choreografie
+                        eine bewegende Geschichte. Die Mischung aus Dynamik und Emotion macht die Performance zu einem
+                        unvergesslichen Erlebnis.
+                    </p>
+                    <section class="container mx-auto py-16 px-4">
+                        <div class="grid gap-12 md:grid-cols-2 lg:grid-cols-2">
+                            <div class="block bg-white rounded-lg shadow-lg overflow-hidden">
+                                <img src="./assets/img/IMG-20241110-WA0065.jpg"
+                                    alt="Formationstanzgruppe im Stil der Lateinformation Memories"
+                                    class="w-full h-64 object-cover">
+                            </div>
+                            <div class="block bg-white rounded-lg shadow-lg overflow-hidden">
+                                <img src="./assets/img/IMG-20241110-WA0068.jpg"
+                                    alt="Formationstanzgruppe im Stil der Lateinformation Memories"
+                                    class="w-full h-64 object-cover">
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button id="backToTop"
+        class="hidden fixed bottom-5 right-5 bg-gray-300 text-gray-800 w-12 h-12 rounded-full shadow-lg border border-gray-500 hover:bg-gray-400 transition flex items-center justify-center">
+        <img src="./assets/img/chevron-up.svg" alt="Nach oben Symbol" class="w-6 h-6">
+    </button>
+
+    <script src="script3.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+
+</body>
+
+</html>
